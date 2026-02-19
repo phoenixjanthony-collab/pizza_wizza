@@ -1,27 +1,45 @@
-// script.js
+const gamesContainer = document.getElementById('games-grid');
+const modal = document.getElementById('gameModal');
+const closeBtn = document.querySelector('.close');
 
-// Function to navigate to different games
-function navigateToGame(gameId) {
-    // Logic to navigate to the selected game
-    console.log(`Navigating to game: ${gameId}`);
-    // Add implementation here
+function displayGames(gamesToShow = games) {
+  gamesContainer.innerHTML = '';
+  gamesToShow.forEach(game => {
+    const gameCard = document.createElement('div');
+    gameCard.className = 'game-card';
+    gameCard.innerHTML = `
+      <h3>${game.title}</h3>
+      <p>${game.description}</p>
+      <button onclick="openGame('${game.id}', '${game.title}')">Play</button>
+    `;
+    gamesContainer.appendChild(gameCard);
+  });
 }
 
-// Function to filter games based on criteria
-function filterGames(criteria) {
-    // Logic to filter games
-    console.log(`Filtering games with criteria: ${criteria}`);
-    // Add implementation here
+function openGame(gameId, gameTitle) {
+  document.getElementById('modalTitle').textContent = gameTitle;
+  document.getElementById('modalDescription').textContent = 'Click Play Now to launch the game';
+  document.getElementById('comingSoon').style.display = 'block';
+  modal.style.display = 'block';
 }
 
-// Function to select a game
-function selectGame(gameId) {
-    // Logic to select a game
-    console.log(`Game selected: ${gameId}`);
-    // Add implementation here
+function showCategory(category) {
+  if (category === 'all') {
+    displayGames(games);
+  } else {
+    const filtered = games.filter(g => g.category === category);
+    displayGames(filtered);
+  }
 }
 
-// Example usage
-navigateToGame('game1');
-filterGames('action');
-selectGame('game2');
+closeBtn.onclick = function() {
+  modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+}
+
+displayGames();
