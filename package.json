@@ -1,0 +1,1 @@
+{\n  "name": "pizza_wizza",\n  "version": "1.0.0",\n  "main": "main.js",\n  "scripts": {\n    "start": "electron .",\n    "build": "webpack"\n  },\n  "dependencies": {\n    "electron": "^18.0.0"\n  },\n  "devDependencies": {\n    "webpack": "^5.0.0",\n    "webpack-cli": "^4.0.0"\n  }\n}
