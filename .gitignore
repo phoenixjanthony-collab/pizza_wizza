@@ -1,0 +1,8 @@
+# Node modules and build artifacts to ignore
+
+node_modules/
+dist/
+# Other build artifacts
+build/
+*.log
+*.tmp
